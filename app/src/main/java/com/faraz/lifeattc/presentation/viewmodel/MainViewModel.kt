@@ -43,6 +43,18 @@ class MainViewModel @Inject constructor(
     }
 
     private fun performAnalysis(content: String) {
+        viewModelScope.launch {
+            analyseContentUseCase.findFifteenthWord(content).collect { result ->
+                result.fold(
+                    onSuccess = { chars ->
+                        _uiState.value = _uiState.value.copy(fifteenthCharacter = chars)
+                    },
+                    onFailure = { error ->
+                        _uiState.value = _uiState.value.copy(error = error.message)
+                    }
+                )
+            }
+        }
 
         viewModelScope.launch {
             analyseContentUseCase.countUniqueWords(content).collect { result ->

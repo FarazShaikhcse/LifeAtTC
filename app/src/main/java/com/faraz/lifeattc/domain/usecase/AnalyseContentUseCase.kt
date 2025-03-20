@@ -21,4 +21,16 @@ class AnalyseContentUseCase @Inject constructor() {
             emit(Result.failure(e))
         }
     }
+
+    fun findFifteenthWord(content: String): Flow<Result<Char>> = flow {
+        try {
+            if (content.length >= 15) {
+                emit(Result.success(content[14])) // 0-based indexing
+            } else {
+                emit(Result.failure(IllegalArgumentException("Content is less than 15 characters")))
+            }
+        } catch (e: Exception) {
+            emit(Result.failure(e))
+        }
+    }
 }
