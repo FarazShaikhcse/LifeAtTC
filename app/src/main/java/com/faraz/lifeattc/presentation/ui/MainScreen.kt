@@ -56,7 +56,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 modifier = Modifier.padding(16.dp)
             )
         } else {
-            Text(text = uiState.content)
+            ResultView(uiState = uiState)
         }
     }
 }

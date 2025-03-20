@@ -3,6 +3,7 @@ package com.faraz.lifeattc.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.faraz.lifeattc.data.repository.WebsiteRepository
+import com.faraz.lifeattc.domain.usecase.AnalyseContentUseCase
 import com.faraz.lifeattc.presentation.WebsiteAnalysisState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val websiteRepository: WebsiteRepository,
+    private val analyseContentUseCase: AnalyseContentUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(WebsiteAnalysisState())
@@ -29,12 +31,29 @@ class MainViewModel @Inject constructor(
                         content = websiteContent.content,
                         isLoading = false
                     )
+                    performAnalysis(websiteContent.content)
                 } else {
                     _uiState.value = _uiState.value.copy(
                         error = websiteContent.error,
                         isLoading = false
                     )
                 }
+            }
+        }
+    }
+
+    private fun performAnalysis(content: String) {
+
+        viewModelScope.launch {
+            analyseContentUseCase.countUniqueWords(content).collect { result ->
+                result.fold(
+                    onSuccess = { wordCount ->
+                        _uiState.value = _uiState.value.copy(wordCount = wordCount)
+                    },
+                    onFailure = { error ->
+                        _uiState.value = _uiState.value.copy(error = error.message)
+                    }
+                )
             }
         }
     }
