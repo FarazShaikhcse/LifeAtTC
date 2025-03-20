@@ -6,5 +6,6 @@ data class WebsiteAnalysisState(
     val fifteenthCharacter: Char? = null,
     val everyFifteenthCharacter: List<Char> = emptyList(),
     val wordCount: Map<String, Int> = emptyMap(),
-    val error: String? = null
+    val error: String? = null,
+    val showLoadButton: Boolean = true,
 )

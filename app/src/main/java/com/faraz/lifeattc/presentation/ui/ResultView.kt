@@ -14,6 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.faraz.lifeattc.presentation.WebsiteAnalysisState
 
@@ -33,7 +34,8 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                 ) {
                     Text(
                         text = "Truecaller15thCharacterRequest",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.fifteenthCharacter != null) {
@@ -61,7 +63,8 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                 ) {
                     Text(
                         text = "TruecallerEvery15thCharacterRequest",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.everyFifteenthCharacter.isNotEmpty()) {
@@ -89,7 +92,8 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                 ) {
                     Text(
                         text = "TruecallerWordCounterRequest",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.wordCount.isNotEmpty()) {
@@ -113,7 +117,12 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                         .padding(horizontal = 16.dp, vertical = 4.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text(text = word)
+                    Text(
+                        text = word,
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(end = 8.dp)
+                    )
                     Text(text = count.toString())
                 }
             }
