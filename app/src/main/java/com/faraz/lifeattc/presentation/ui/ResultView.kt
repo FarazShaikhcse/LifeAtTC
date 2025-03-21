@@ -14,8 +14,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.faraz.lifeattc.R
 import com.faraz.lifeattc.presentation.WebsiteAnalysisState
 
 @Composable
@@ -33,14 +35,17 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
-                        text = "Truecaller15thCharacterRequest",
+                        text = stringResource(R.string.fifteenth_char_heading),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.fifteenthCharacter != null) {
                         Text(
-                            text = "15th character: ${uiState.fifteenthCharacter}",
+                            text = stringResource(
+                                R.string.fifteenth_character,
+                                uiState.fifteenthCharacter
+                            ),
                             modifier = Modifier.padding(top = 8.dp)
                         )
                     } else {
@@ -62,14 +67,17 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
-                        text = "TruecallerEvery15thCharacterRequest",
+                        text = stringResource(R.string.every_15th_char_heading),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.everyFifteenthCharacter.isNotEmpty()) {
                         Text(
-                            text = "Every 15th character: ${uiState.everyFifteenthCharacter.joinToString()}",
+                            text = stringResource(
+                                R.string.every_15th_character,
+                                uiState.everyFifteenthCharacter.joinToString()
+                            ),
                             modifier = Modifier.padding(top = 8.dp)
                         )
                     } else {
@@ -91,14 +99,14 @@ fun ResultView(uiState: WebsiteAnalysisState) {
                     modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
-                        text = "TruecallerWordCounterRequest",
+                        text = stringResource(R.string.word_counter_heading),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )
 
                     if (uiState.wordCount.isNotEmpty()) {
                         Text(
-                            text = "Word count:",
+                            text = stringResource(R.string.word_count),
                             modifier = Modifier.padding(top = 8.dp)
                         )
                     } else {

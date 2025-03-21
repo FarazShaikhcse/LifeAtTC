@@ -22,7 +22,7 @@ class AnalyseContentUseCaseImpl @Inject constructor(): AnalyseContentUseCase {
         }
     }
 
-    override fun findFifteenthWord(content: String): Flow<Result<Char>> = flow {
+    override fun findFifteenthChar(content: String): Flow<Result<Char>> = flow {
         try {
             if (content.length >= 15) {
                 emit(Result.success(content[14])) // 0-based indexing

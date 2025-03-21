@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+const val TC_WEB_URL =
+    "https://www.truecaller.com/blog/life-at-truecaller/life-as-an-android-engineer"
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val websiteRepository: WebsiteRepository,
@@ -21,7 +24,7 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(WebsiteAnalysisState())
     val uiState: StateFlow<WebsiteAnalysisState> = _uiState.asStateFlow()
 
-    fun loadWebsiteContent(url: String = "https://www.truecaller.com/blog/life-at-truecaller/life-as-an-android-engineer") {
+    fun loadWebsiteContent(url: String = TC_WEB_URL) {
         _uiState.value = WebsiteAnalysisState(isLoading = true, showLoadButton = false)
 
         viewModelScope.launch {
@@ -45,7 +48,7 @@ class MainViewModel @Inject constructor(
 
     private fun performAnalysis(content: String) {
         viewModelScope.launch {
-            analyseContentUseCase.findFifteenthWord(content).collect { result ->
+            analyseContentUseCase.findFifteenthChar(content).collect { result ->
                 result.fold(
                     onSuccess = { chars ->
                         _uiState.value = _uiState.value.copy(fifteenthCharacter = chars)

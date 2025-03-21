@@ -17,15 +17,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.faraz.lifeattc.R
 import com.faraz.lifeattc.presentation.viewmodel.MainViewModel
 
 @Composable
 fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
-    val url =
-        "https://www.truecaller.com/blog/life-at-truecaller/life-as-an-android-engineer"
 
     Box(
         modifier = Modifier
@@ -40,7 +40,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Truecaller Website Analysis",
+                text = stringResource(R.string.main_heading),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
@@ -51,7 +51,8 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 )
             } else if (uiState.error != null) {
                 val context = LocalContext.current
-                Toast.makeText(context, "Error: ${uiState.error}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,
+                    stringResource(R.string.error, uiState.error.toString()), Toast.LENGTH_SHORT).show()
             } else {
                 if (uiState.showLoadButton.not()) {
                     ResultView(uiState = uiState)
@@ -61,13 +62,13 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
         }
         if (uiState.showLoadButton) {
             Button(
-                onClick = { viewModel.loadWebsiteContent(url) },
+                onClick = { viewModel.loadWebsiteContent() },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
                     .padding(bottom = 8.dp)
             ) {
-                Text("Load Website Content")
+                Text(stringResource(R.string.button_text))
             }
         }
     }
