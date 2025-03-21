@@ -24,8 +24,9 @@ class AnalyseContentUseCaseImpl @Inject constructor(): AnalyseContentUseCase {
 
     override fun findFifteenthChar(content: String): Flow<Result<Char>> = flow {
         try {
-            if (content.length >= 15) {
-                emit(Result.success(content[14])) // 0-based indexing
+            val textWithoutWhitespace = content.replace(Regex("\\s+"), "")
+            if (textWithoutWhitespace.length >= 15) {
+                emit(Result.success(textWithoutWhitespace[14])) // 0-based indexing
             } else {
                 emit(Result.failure(IllegalArgumentException("Content is less than 15 characters")))
             }
@@ -37,8 +38,9 @@ class AnalyseContentUseCaseImpl @Inject constructor(): AnalyseContentUseCase {
     override fun findEveryFifteenthCharacter(content: String): Flow<Result<List<Char>>> = flow {
         try {
             val result = mutableListOf<Char>()
-            for (i in 14 until content.length step 15) { // 0-based indexing
-                result.add(content[i])
+            val textWithoutWhitespace = content.replace(Regex("\\s+"), "")
+            for (i in 14 until textWithoutWhitespace.length step 15) { // 0-based indexing
+                result.add(textWithoutWhitespace[i])
             }
             emit(Result.success(result))
         } catch (e: Exception) {

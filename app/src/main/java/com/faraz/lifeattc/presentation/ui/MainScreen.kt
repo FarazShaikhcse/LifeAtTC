@@ -55,7 +55,14 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                     stringResource(R.string.error, uiState.error.toString()), Toast.LENGTH_SHORT).show()
             } else {
                 if (uiState.showLoadButton.not()) {
-                    ResultView(uiState = uiState)
+                    ResultView(
+                        uiState = uiState,
+                        onToggleCardExpansion = {
+                            viewModel.toggleCardExpansion(it)
+                        },
+                        onNextPage = { viewModel.goToNextPage() },
+                        onPreviousPage = { viewModel.goToPreviousPage() }
+                    )
                 }
             }
 
