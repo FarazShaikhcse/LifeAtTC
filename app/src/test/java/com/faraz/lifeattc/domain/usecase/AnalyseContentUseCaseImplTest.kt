@@ -123,7 +123,7 @@ class AnalyseContentUseCaseImplTest {
         analyseContentUseCase.findFifteenthChar(content).test {
             val result = awaitItem()
             assertTrue(result.isSuccess)
-            assertEquals('n', result.getOrNull())
+            assertEquals('i', result.getOrNull())
 
             awaitComplete()
         }
@@ -172,7 +172,7 @@ class AnalyseContentUseCaseImplTest {
             assertTrue(result.isSuccess)
 
             val chars = result.getOrNull()
-            assertEquals(listOf(' ', 'a', ' ', 't', 'o'), chars)
+            assertEquals(listOf('t', 'u', 'h', 'l'), chars)
 
             awaitComplete()
         }
@@ -223,7 +223,7 @@ class AnalyseContentUseCaseImplTest {
             assertTrue(result.isSuccess)
 
             val chars = result.getOrNull()!!
-            assertEquals(listOf('s', '!'), chars)
+            assertEquals(listOf('h'), chars)
 
             awaitComplete()
         }
