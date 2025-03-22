@@ -26,7 +26,7 @@ class AnalyseContentUseCaseImpl @Inject constructor(): AnalyseContentUseCase {
         try {
             val textWithoutWhitespace = content.replace(Regex("\\s+"), "")
             if (textWithoutWhitespace.length >= 15) {
-                emit(Result.success(textWithoutWhitespace[14])) // 0-based indexing
+                emit(Result.success(textWithoutWhitespace[14]))
             } else {
                 emit(Result.failure(IllegalArgumentException("Content is less than 15 characters")))
             }
@@ -39,7 +39,7 @@ class AnalyseContentUseCaseImpl @Inject constructor(): AnalyseContentUseCase {
         try {
             val result = mutableListOf<Char>()
             val textWithoutWhitespace = content.replace(Regex("\\s+"), "")
-            for (i in 14 until textWithoutWhitespace.length step 15) { // 0-based indexing
+            for (i in 14 until textWithoutWhitespace.length step 15) {
                 result.add(textWithoutWhitespace[i])
             }
             emit(Result.success(result))

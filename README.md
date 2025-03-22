@@ -7,11 +7,12 @@ The webpage content is treated as plain text and processed to perform three para
 
 ## Features
 1. **Truecaller15thCharacterRequest**
-    - Extracts the 15th character from the webpage content.
+    - Extracts the 15th character from the webpage content(ignores all white-space characters(space, tab, line break, etc.)).
     - Displays the character on the screen.
 
 2. **TruecallerEvery15thCharacterRequest**
     - Extracts every 15th character from the webpage content (i.e., 15th, 30th, 45th, etc.).
+    - Ignores all white-space characters(space, tab, line break, etc.)).
     - Displays the array of extracted characters.
 
 3. **TruecallerWordCounterRequest**
@@ -22,17 +23,17 @@ The webpage content is treated as plain text and processed to perform three para
 ## How It Works
 - The app features a **Load Website Content** button.
 - When pressed, it fetches the content of the specified webpage.
-- The three tasks run in parallel.
+- After the response is received from the website, the three tasks mentioned above are called parallel
 - The results of each task are displayed as soon as they complete.
 
 ## Technologies Used
 - **Android SDK** (Java/Kotlin for Android development)
 - **Multithreading (Coroutines/Executors)** for parallel processing
 - **HTTP Library (OkHttp/Retrofit)** for fetching webpage content
-- **Text Processing** for character and word extraction
+- **Text Processing(Regex/String functions)** for character and word extraction
 
 ## Installation
-1. Clone this repository.
+1. Clone this repository(https://github.com/FarazShaikhcse/LifeAtTC).
 2. Open the project in Android Studio.
 3. Build and run the app on an Android device or emulator.
 
