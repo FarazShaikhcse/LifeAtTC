@@ -57,15 +57,12 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                 if (uiState.showLoadButton.not()) {
                     ResultView(
                         uiState = uiState,
-                        onToggleCardExpansion = {
-                            viewModel.toggleCardExpansion(it)
-                        },
-                        onNextPage = { viewModel.goToNextPage() },
-                        onPreviousPage = { viewModel.goToPreviousPage() }
+                        onToggleCardExpansion = viewModel::toggleCardExpansion,
+                        onNextPage = viewModel::goToNextPage,
+                        onPreviousPage = viewModel::goToPreviousPage
                     )
                 }
             }
-
         }
         if (uiState.showLoadButton) {
             Button(

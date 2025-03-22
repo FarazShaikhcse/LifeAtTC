@@ -9,4 +9,10 @@
     <string name="every_15th_character">Every 15th character: %1$s</string>
     <string name="word_count">Word count:</string>
     <string name="error">Error: %1$s</string>
+    <string name="total_unique_words">Total unique words: %1$s</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="page_of">Page %1$s of %2$s</string>
+    <string name="word">Word</string>
+    <string name="count">Count</string>
 </resources>

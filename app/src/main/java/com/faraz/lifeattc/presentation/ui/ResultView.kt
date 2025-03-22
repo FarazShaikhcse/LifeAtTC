@@ -122,7 +122,7 @@ fun PaginatedWordCountList(
     Column(modifier = Modifier.fillMaxWidth()) {
         // Summary text
         Text(
-            text = "Total unique words: ${pageData.totalUniqueWords}",
+            text = stringResource(R.string.total_unique_words, pageData.totalUniqueWords),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(vertical = 8.dp)
         )
@@ -140,16 +140,16 @@ fun PaginatedWordCountList(
                     onClick = onPreviousPage,
                     enabled = pageData.canGoToPrevious
                 ) {
-                    Text("Previous")
+                    Text(stringResource(R.string.previous))
                 }
 
-                Text("Page ${pageData.currentPage + 1} of ${pageData.totalPages}")
+                Text(stringResource(R.string.page_of, pageData.currentPage + 1, pageData.totalPages))
 
                 Button(
                     onClick = onNextPage,
                     enabled = pageData.canGoToNext
                 ) {
-                    Text("Next")
+                    Text(stringResource(R.string.next))
                 }
             }
         }
@@ -162,12 +162,12 @@ fun PaginatedWordCountList(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = "Word",
+                text = stringResource(R.string.word),
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.weight(1f)
             )
             Text(
-                text = "Count",
+                text = stringResource(R.string.count),
                 fontWeight = FontWeight.Bold
             )
         }

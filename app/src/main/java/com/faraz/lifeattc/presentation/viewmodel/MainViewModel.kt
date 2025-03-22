@@ -25,37 +25,8 @@ class MainViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(WebsiteAnalysisState())
     val uiState: StateFlow<WebsiteAnalysisState> = _uiState.asStateFlow()
 
-//    var uiState by mutableStateOf(WebsiteAnalysisState())
-//        private set
-
     private var currentPage = 0
     private val noOfWordsPerPage = 20
-
-//    fun analyzeWebsite(url: String) {
-//        viewModelScope.launch {
-//            state = state.copy(isLoading = true, error = null)
-//
-//            try {
-//                val result = analyzeWebsiteUseCase(url)
-//
-//                state = state.copy(
-//                    fifteenthCharacter = result.fifteenthCharacter,
-//                    everyFifteenthCharacter = result.everyFifteenthCharacter,
-//                    wordCount = result.wordCount,
-//                    isLoading = false
-//                )
-//
-//                // Initialize word count page data
-//                refreshWordCountPageData()
-//
-//            } catch (e: Exception) {
-//                state = state.copy(
-//                    isLoading = false,
-//                    error = e.message ?: "An unknown error occurred"
-//                )
-//            }
-//        }
-//    }
 
     fun toggleCardExpansion(cardId: String) {
         val currentExpandedCards = _uiState.value.expandedCardIds.toMutableSet()
@@ -115,7 +86,6 @@ class MainViewModel @Inject constructor(
             websiteRepository.getWebsiteContent(url).collect { websiteContent ->
                 if (websiteContent.error == null) {
                     _uiState.value = _uiState.value.copy(
-//                        content = websiteContent.content,
                         isLoading = false
                     )
                     performAnalysis(websiteContent.content)
